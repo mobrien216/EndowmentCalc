@@ -6,34 +6,39 @@
 <title>The Power of Permanence — The Cleveland Foundation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    /* TCF Brand */
-    --dark-green: #164430;
-    --mid-green: #086C43;
-    --orange: #EE7331;
-    --red: #CC1E4B;
-    --aqua: #19B9A9;
-    --blue: #1A8DA9;
-    --pink: #C0629A;
-    --black: #000000;
-    --white: #F3F1EF;
-    --gray: #F3F2F0;
-    --light-orange: #DBD5CA;
+    /* Brand palette (Blue primary, Pink accent, Gray background) */
+    --blue:        #1A8DA9;   /* primary */
+    --blue-deep:   #126F87;   /* darker shade for decorative strokes / hover */
+    --blue-darker: #0E5A6E;   /* deepest blue for emphasis if needed */
+    --pink:        #C0629A;   /* accent */
+    --pink-deep:   #A85183;   /* darker pink for hover */
+    --pink-soft:   #E8C2D2;   /* light tinted pink for subtle accents on blue */
+    --gray:        #F3F2F0;   /* background */
+    --gray-warm:   #FAF8F6;   /* slightly warmer surface for cards on gray */
+    --white:       #FFFFFF;
+    --cream:       #F3F1EF;   /* off-white for text on blue */
+    --ink:         #0E2A33;   /* deep blue-ink for body text */
 
-    /* Derived */
-    --dark-green-95: rgba(22,68,48,0.95);
-    --dark-green-08: rgba(22,68,48,0.08);
-    --dark-green-12: rgba(22,68,48,0.12);
-    --dark-green-20: rgba(22,68,48,0.20);
-    --orange-15: rgba(238,115,49,0.15);
-    --paper: #FAF8F5;
-    --ink: #0E1F18;
+    /* Legacy variable names retained for backward compatibility throughout the file */
+    --dark-green:  var(--blue);
+    --mid-green:   var(--blue-deep);
+    --orange:      var(--pink);
+    --light-orange: var(--pink-soft);
+    --paper:       var(--gray);
 
-    --font-display: 'Bricolage Grotesque', 'Paralucent', system-ui, sans-serif;
-    --font-body: 'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif;
+    /* Derived alphas (using blue RGB: 26, 141, 169) */
+    --dark-green-95: rgba(26,141,169,0.95);
+    --dark-green-08: rgba(14,42,51,0.08);
+    --dark-green-12: rgba(14,42,51,0.12);
+    --dark-green-20: rgba(14,42,51,0.20);
+    --orange-15:     rgba(192,98,154,0.15);
+
+    --font-display: 'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif;
+    --font-body:    'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif;
 
     --radius: 4px;
     --radius-lg: 12px;
@@ -66,10 +71,10 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 800;
+    letter-spacing: -0.025em;
     line-height: 1.05;
-    color: var(--dark-green);
+    color: var(--blue);
   }
 
   /* ============ NAV ============ */
@@ -96,7 +101,7 @@
   nav.top .brand .mark {
     width: 30px; height: 30px;
     border-radius: 50%;
-    background: var(--dark-green);
+    background: var(--blue);
     position: relative;
     display: inline-block;
   }
@@ -104,7 +109,7 @@
     content: ""; position: absolute;
     inset: 7px;
     border-radius: 50%;
-    border: 2px solid var(--orange);
+    border: 2px solid var(--white);
   }
   nav.top .links {
     display: flex; gap: 32px;
@@ -126,13 +131,15 @@
   /* ============ HERO ============ */
   .hero {
     min-height: 100vh;
-    padding: 140px 40px 80px;
+    padding: 140px 40px 60px;
     position: relative;
     background: var(--dark-green);
     color: var(--white);
     overflow: hidden;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 80px;
   }
 
   /* Decorative concentric rings — symbolize perpetuity */
@@ -148,10 +155,11 @@
   }
   .hero .rings circle {
     fill: none;
-    stroke: var(--mid-green);
+    stroke: var(--pink-soft);
+    stroke-opacity: 0.30;
     stroke-width: 1;
   }
-  .hero .rings circle.accent { stroke: var(--orange); stroke-width: 1.5; }
+  .hero .rings circle.accent { stroke: var(--pink-soft); stroke-opacity: 1; stroke-width: 1.5; }
   .hero .rings circle.dashed { stroke-dasharray: 3 8; }
 
   @keyframes drift {
@@ -170,10 +178,10 @@
   .hero .eyebrow {
     font-family: var(--font-display);
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--orange);
+    color: var(--pink-soft);
     margin-bottom: 28px;
     display: inline-flex;
     align-items: center;
@@ -181,12 +189,12 @@
   }
   .hero .eyebrow::before {
     content: ""; width: 32px; height: 1px;
-    background: var(--orange);
+    background: var(--pink-soft);
   }
   .hero h1 {
     color: var(--white);
     font-size: clamp(56px, 9vw, 132px);
-    font-weight: 800;
+    font-weight: 900;
     line-height: 0.92;
     letter-spacing: -0.045em;
     max-width: 1000px;
@@ -194,23 +202,35 @@
   }
   .hero h1 em {
     font-style: italic;
-    font-weight: 400;
-    color: var(--orange);
-    font-family: 'Bricolage Grotesque', serif;
+    font-weight: 500;
+    color: var(--pink-soft);
+    font-family: var(--font-display);
   }
   .hero .lede {
     max-width: 580px;
     font-size: clamp(17px, 1.4vw, 21px);
     line-height: 1.55;
     color: var(--white);
-    opacity: 0.88;
+    opacity: 0.95;
     margin-bottom: 48px;
-    font-weight: 300;
+    font-weight: 400;
   }
-  .hero .cta-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center;}
+  .hero .cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 8px;
+  }
   .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 28px;
+    min-height: 48px;
+    width: auto;
+    flex: 0 0 auto;
     border-radius: 50px;
     font-family: var(--font-display);
     font-weight: 600;
@@ -219,41 +239,45 @@
     border: none;
     cursor: pointer;
     text-decoration: none;
+    white-space: nowrap;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .btn-primary {
-    background: var(--orange);
-    color: var(--dark-green);
+    background: var(--pink);
+    color: var(--white);
+    font-weight: 700;
   }
-  .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+  .btn-primary:hover { background: var(--pink-deep); transform: translateY(-2px); }
   .btn-ghost {
     background: transparent;
     color: var(--white);
-    border: 1px solid rgba(243,241,239,0.3);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 14px 27px;  /* compensate for border */
   }
-  .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
-  .btn .arrow { transition: transform 0.25s; }
+  .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+  .btn .arrow { transition: transform 0.25s; display: inline-block; }
   .btn:hover .arrow { transform: translateX(4px); }
 
   .hero .stat-strip {
-    position: absolute;
-    bottom: 40px;
-    left: 40px;
-    right: 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
     display: flex;
     gap: 48px;
     flex-wrap: wrap;
+    position: relative;
     z-index: 2;
   }
   .hero .stat-strip .stat {
     border-left: 1px solid rgba(243,241,239,0.2);
     padding-left: 20px;
+    min-width: 0;
   }
   .hero .stat-strip .num {
     font-family: var(--font-display);
     font-size: 36px;
-    font-weight: 700;
-    color: var(--orange);
+    font-weight: 800;
+    color: var(--pink-soft);
     line-height: 1;
     letter-spacing: -0.02em;
   }
@@ -266,9 +290,11 @@
     margin-top: 6px;
   }
   @media (max-width: 768px) {
-    .hero { padding: 100px 20px 60px; }
+    .hero { padding: 110px 20px 50px; gap: 56px; min-height: auto; }
     .hero .rings { right: -300px; width: 500px; height: 500px; opacity: 0.4; }
-    .hero .stat-strip { position: static; margin-top: 60px; gap: 28px; }
+    .hero .stat-strip { gap: 24px 32px; }
+    .hero .stat-strip .num { font-size: 28px; }
+    .hero .stat-strip .stat { flex: 1 1 140px; }
   }
 
   /* ============ SECTION TEMPLATE ============ */
@@ -284,10 +310,10 @@
   .section-eyebrow {
     font-family: var(--font-display);
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--orange);
+    color: var(--pink);
     margin-bottom: 20px;
     display: inline-flex;
     align-items: center;
@@ -295,7 +321,7 @@
   }
   .section-eyebrow::before {
     content: ""; width: 28px; height: 1px;
-    background: var(--orange);
+    background: var(--pink);
   }
   .section-title {
     font-size: clamp(40px, 5.5vw, 72px);
@@ -348,7 +374,7 @@
     color: var(--dark-green);
     opacity: 0.6;
   }
-  .story-card.endowed .label { color: var(--orange); opacity: 1; }
+  .story-card.endowed .label { color: var(--pink-soft); opacity: 1; }
   .story-card h3 {
     font-size: 36px;
     margin-bottom: 16px;
@@ -433,7 +459,78 @@
   .inputs-panel .sub {
     font-size: 13px;
     opacity: 0.7;
+    margin-bottom: 24px;
+  }
+
+  /* Mode toggle (One-time vs Monthly) */
+  .mode-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    background: var(--dark-green-08);
+    padding: 4px;
+    border-radius: 50px;
     margin-bottom: 28px;
+  }
+  .mode-toggle button {
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--dark-green);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.6;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .mode-toggle button:hover { opacity: 0.9; }
+  .mode-toggle button.active {
+    background: var(--dark-green);
+    color: var(--white);
+    opacity: 1;
+    box-shadow: 0 2px 8px var(--dark-green-20);
+  }
+
+  /* Helper line showing total contributed in monthly mode */
+  .contribution-helper {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--dark-green);
+    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 12px;
+    background: var(--dark-green-08);
+    border-radius: var(--radius);
+  }
+  .contribution-helper strong {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--dark-green);
+    opacity: 1;
+  }
+  /* Show/hide gift fields by mode */
+  .mode-onetime .gift-monthly { display: none; }
+  .mode-monthly .gift-onetime { display: none; }
+  /* Suffix for monthly input (/month) */
+  .currency-input.with-suffix input { padding-right: 70px; }
+  .currency-input .suffix {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dark-green);
+    opacity: 0.55;
+    font-size: 13px;
+    font-weight: 500;
+    pointer-events: none;
   }
 
   .input-group {
@@ -607,7 +704,7 @@
     margin-bottom: 24px;
     opacity: 0.5;
   }
-  .compare-side.endowed .side-label { color: var(--orange); opacity: 1; }
+  .compare-side.endowed .side-label { color: var(--pink-soft); opacity: 1; }
 
   .big-num {
     font-family: var(--font-display);
@@ -640,7 +737,7 @@
     color: var(--dark-green);
     line-height: 1;
   }
-  .compare-side.endowed .mini-stat .ms-num { color: var(--orange); }
+  .compare-side.endowed .mini-stat .ms-num { color: var(--pink-soft); }
   .mini-stat .ms-lbl {
     font-size: 11px;
     text-transform: uppercase;
@@ -657,8 +754,8 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--orange);
-    color: var(--dark-green);
+    background: var(--pink);
+    color: var(--white);
     padding: 6px 12px;
     border-radius: 50px;
     font-family: var(--font-display);
@@ -670,7 +767,7 @@
   .forever-badge::before {
     content: "";
     width: 6px; height: 6px; border-radius: 50%;
-    background: var(--dark-green);
+    background: var(--white);
     animation: pulse 2s ease-in-out infinite;
   }
   @keyframes pulse {
@@ -680,8 +777,8 @@
 
   /* Multiplier highlight */
   .multiplier-banner {
-    background: var(--orange);
-    color: var(--dark-green);
+    background: var(--pink);
+    color: var(--white);
     padding: 24px 40px;
     display: flex;
     align-items: center;
@@ -690,15 +787,15 @@
   }
   .multiplier-banner .text {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 600;
     font-size: 17px;
     letter-spacing: -0.01em;
   }
-  .multiplier-banner .text strong { font-weight: 700; }
+  .multiplier-banner .text strong { font-weight: 800; }
   .multiplier-banner .mult-num {
     font-family: var(--font-display);
     font-size: 64px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1;
   }
@@ -772,7 +869,7 @@
   }
   .impact-section h2 { color: var(--white); }
   .impact-section .section-intro { color: var(--white); opacity: 0.8; }
-  .impact-section .section-eyebrow { color: var(--orange); }
+  .impact-section .section-eyebrow { color: var(--pink-soft); }
 
   .impact-grid {
     display: grid;
@@ -804,12 +901,12 @@
     width: 44px;
     height: 44px;
     margin-bottom: 20px;
-    color: var(--orange);
+    color: var(--pink-soft);
   }
   .impact-card .icon svg { width: 100%; height: 100%; }
   .impact-card .cat {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 17px;
     margin-bottom: 6px;
     color: var(--white);
@@ -831,13 +928,13 @@
   }
   .impact-card .impact-stat .n {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 28px;
     line-height: 1;
     color: var(--white);
   }
   .impact-card .impact-stat.headline .n {
-    color: var(--orange);
+    color: var(--pink-soft);
     font-size: 36px;
   }
   .impact-card .impact-stat .l {
@@ -848,8 +945,8 @@
     margin-top: 6px;
   }
   .impact-card .impact-stat.headline .l {
-    opacity: 0.9;
-    color: var(--orange);
+    opacity: 0.95;
+    color: var(--pink-soft);
   }
 
   /* ============ ASSUMPTIONS DRAWER ============ */
@@ -909,7 +1006,7 @@
     max-width: 600px;
   }
   footer p { opacity: 0.8; max-width: 480px; margin-bottom: 32px; }
-  footer .cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  footer .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
   footer .meta {
     grid-column: 1 / -1;
     margin-top: 80px;
@@ -939,6 +1036,9 @@
     .compare-head, .compare-side, .chart-card { padding-left: 24px; padding-right: 24px; }
     .compare-side { padding: 28px 24px; }
     .forever-badge { top: 24px; right: 24px; }
+    /* Buttons: stack full-width on phones so labels never crowd */
+    .hero .cta-row, footer .cta-row { gap: 12px; width: 100%; }
+    .hero .cta-row .btn, footer .cta-row .btn { width: 100%; flex: 1 1 100%; }
   }
 
   /* fade-in animations */
@@ -1055,24 +1155,53 @@
 
     <div class="calc-shell">
       <!-- INPUTS -->
-      <aside class="inputs-panel">
+      <aside class="inputs-panel mode-onetime" id="inputsPanel">
         <h3>Your gift</h3>
         <div class="sub">Build your scenario</div>
 
-        <div class="input-group">
+        <div class="mode-toggle" role="tablist" aria-label="Gift type">
+          <button type="button" class="active" data-mode="onetime" role="tab" aria-selected="true">One-time</button>
+          <button type="button" data-mode="monthly" role="tab" aria-selected="false">Monthly</button>
+        </div>
+
+        <!-- One-time gift input -->
+        <div class="input-group gift-onetime">
           <div class="input-label">
             <span>One-time contribution</span>
             <span class="value">$<span id="giftDisplay">10,000</span></span>
           </div>
           <div class="currency-input">
-            <input type="number" id="gift" value="10000" min="0" step="500" />
+            <input type="number" id="gift" value="10000" min="0" step="500" aria-label="One-time contribution amount" />
           </div>
-          <div class="presets">
+          <div class="presets" id="onetimePresets">
             <button class="preset" data-gift="1000">$1K</button>
             <button class="preset active" data-gift="10000">$10K</button>
             <button class="preset" data-gift="25000">$25K</button>
             <button class="preset" data-gift="100000">$100K</button>
             <button class="preset" data-gift="1000000">$1M</button>
+          </div>
+        </div>
+
+        <!-- Monthly gift input -->
+        <div class="input-group gift-monthly">
+          <div class="input-label">
+            <span>Monthly contribution</span>
+            <span class="value">$<span id="monthlyDisplay">100</span><span style="opacity:0.5;font-weight:500;">/mo</span></span>
+          </div>
+          <div class="currency-input with-suffix">
+            <input type="number" id="monthly" value="100" min="0" step="10" aria-label="Monthly contribution amount" />
+            <span class="suffix">/ month</span>
+          </div>
+          <div class="presets" id="monthlyPresets">
+            <button class="preset" data-monthly="25">$25</button>
+            <button class="preset" data-monthly="50">$50</button>
+            <button class="preset active" data-monthly="100">$100</button>
+            <button class="preset" data-monthly="250">$250</button>
+            <button class="preset" data-monthly="500">$500</button>
+          </div>
+          <div class="contribution-helper">
+            <span>Total contributed over <span id="helperYears">25</span> years</span>
+            <strong>$<span id="totalContributed">30,000</span></strong>
           </div>
         </div>
 
@@ -1114,12 +1243,12 @@
           </div>
           <div class="compare-body">
             <div class="compare-side">
-              <div class="side-label">One-time gift</div>
+              <div class="side-label" id="oneTimeSideLabel">One-time gift</div>
               <div class="big-num">$<span id="oneTimeImpact">10,000</span></div>
-              <div class="big-num-caption">Total impact — spent in year one</div>
+              <div class="big-num-caption" id="oneTimeCaption">Total impact — spent in year one</div>
               <div class="mini-stat-row">
                 <div class="mini-stat">
-                  <div class="ms-num">1</div>
+                  <div class="ms-num" id="oneTimeYearsNum">1</div>
                   <div class="ms-lbl">Years of grants</div>
                 </div>
                 <div class="mini-stat">
@@ -1130,7 +1259,7 @@
             </div>
             <div class="compare-side endowed">
               <div class="forever-badge">Forever</div>
-              <div class="side-label">Endowed gift</div>
+              <div class="side-label" id="endowedSideLabel">Endowed gift</div>
               <div class="big-num">$<span id="endowedImpact">26,160</span></div>
               <div class="big-num-caption">Total impact within your horizon, and still growing</div>
               <div class="mini-stat-row">
@@ -1146,7 +1275,7 @@
             </div>
           </div>
           <div class="multiplier-banner">
-            <div class="text">An endowed gift creates <strong><span id="multiplierText">2.6</span>× the impact</strong> of giving it once — and keeps creating impact every year, forever.</div>
+            <div class="text" id="multiplierCopy">An endowed gift creates <strong><span id="multiplierText">2.6</span>× the impact</strong> of giving it once — and keeps creating impact every year, forever.</div>
             <div class="mult-num"><span id="multiplierBig">2.6</span>×</div>
           </div>
         </div>
@@ -1213,14 +1342,18 @@ const FEE = 0.01;        // 1% admin fee
 const INFLATION = 0.025; // 2.5% inflation
 const MONTHS_PER_YEAR = 12;
 
-function project({ gift, years, returnRate, spendRate }) {
+function project({ gift, monthly, years, returnRate, spendRate }) {
   const data = [];
   let balance = 0;
   let cumGrants = 0;
   let cumGrantsReal = 0;
+  const monthlyAnnualTotal = (monthly || 0) * MONTHS_PER_YEAR;
 
   for (let year = 1; year <= Math.max(years, 100); year++) {
-    const contribution = year === 1 ? gift : 0;
+    // One-time gift lands in year 1; monthly contributions continue through the horizon
+    const oneTime = year === 1 ? (gift || 0) : 0;
+    const monthlyThisYear = year <= years ? monthlyAnnualTotal : 0;
+    const contribution = oneTime + monthlyThisYear;
     const begin = balance;
     const invReturn = (begin + contribution * 0.5) * (returnRate - FEE);
     const grant = (begin + contribution) * spendRate;
@@ -1254,22 +1387,35 @@ const fmtMult = (n) => n.toFixed(1);
 // ============================================================
 // DOM
 // ============================================================
-const giftInput    = document.getElementById('gift');
-const yearsInput   = document.getElementById('years');
-const returnInput  = document.getElementById('return');
-const spendInput   = document.getElementById('spend');
+const inputsPanel    = document.getElementById('inputsPanel');
+const giftInput      = document.getElementById('gift');
+const monthlyInput   = document.getElementById('monthly');
+const yearsInput     = document.getElementById('years');
+const returnInput    = document.getElementById('return');
+const spendInput     = document.getElementById('spend');
 
-const giftDisplay     = document.getElementById('giftDisplay');
-const yearsDisplay    = document.getElementById('yearsDisplay');
-const returnDisplay   = document.getElementById('returnDisplay');
-const spendDisplay    = document.getElementById('spendDisplay');
-const horizonText     = document.getElementById('horizonText');
-const oneTimeImpact   = document.getElementById('oneTimeImpact');
-const endowedImpact   = document.getElementById('endowedImpact');
-const cumGrants       = document.getElementById('cumGrants');
-const endingBalance   = document.getElementById('endingBalance');
-const multiplierText  = document.getElementById('multiplierText');
-const multiplierBig   = document.getElementById('multiplierBig');
+const giftDisplay      = document.getElementById('giftDisplay');
+const monthlyDisplay   = document.getElementById('monthlyDisplay');
+const yearsDisplay     = document.getElementById('yearsDisplay');
+const returnDisplay    = document.getElementById('returnDisplay');
+const spendDisplay     = document.getElementById('spendDisplay');
+const helperYears      = document.getElementById('helperYears');
+const totalContributed = document.getElementById('totalContributed');
+const horizonText      = document.getElementById('horizonText');
+const oneTimeImpact    = document.getElementById('oneTimeImpact');
+const oneTimeSideLabel = document.getElementById('oneTimeSideLabel');
+const oneTimeCaption   = document.getElementById('oneTimeCaption');
+const oneTimeYearsNum  = document.getElementById('oneTimeYearsNum');
+const endowedSideLabel = document.getElementById('endowedSideLabel');
+const endowedImpact    = document.getElementById('endowedImpact');
+const cumGrantsEl      = document.getElementById('cumGrants');
+const endingBalance    = document.getElementById('endingBalance');
+const multiplierText   = document.getElementById('multiplierText');
+const multiplierBig    = document.getElementById('multiplierBig');
+const multiplierCopy   = document.getElementById('multiplierCopy');
+
+// Track current giving mode
+let mode = 'onetime'; // or 'monthly'
 
 // ============================================================
 // CHART
@@ -1285,36 +1431,36 @@ const chart = new Chart(ctx, {
       {
         label: 'Fund balance',
         data: [],
-        borderColor: '#164430',
-        backgroundColor: 'rgba(22,68,48,0.08)',
+        borderColor: '#1A8DA9',
+        backgroundColor: 'rgba(26,141,169,0.10)',
         borderWidth: 2.5,
         tension: 0.35,
         fill: true,
         pointRadius: 0,
         pointHoverRadius: 6,
-        pointHoverBackgroundColor: '#164430',
-        pointHoverBorderColor: '#F3F1EF',
+        pointHoverBackgroundColor: '#1A8DA9',
+        pointHoverBorderColor: '#FFFFFF',
         pointHoverBorderWidth: 2
       },
       {
         label: 'Cumulative grants',
         data: [],
-        borderColor: '#EE7331',
-        backgroundColor: 'rgba(238,115,49,0.08)',
+        borderColor: '#C0629A',
+        backgroundColor: 'rgba(192,98,154,0.10)',
         borderWidth: 2.5,
         tension: 0.35,
         fill: true,
         pointRadius: 0,
         pointHoverRadius: 6,
-        pointHoverBackgroundColor: '#EE7331',
-        pointHoverBorderColor: '#F3F1EF',
+        pointHoverBackgroundColor: '#C0629A',
+        pointHoverBorderColor: '#FFFFFF',
         pointHoverBorderWidth: 2
       },
       {
         label: 'Annual grant',
         data: [],
-        borderColor: '#086C43',
-        backgroundColor: 'rgba(8,108,67,0.08)',
+        borderColor: '#126F87',
+        backgroundColor: 'rgba(18,111,135,0.10)',
         borderWidth: 2.5,
         tension: 0.35,
         fill: true,
@@ -1331,8 +1477,8 @@ const chart = new Chart(ctx, {
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: '#164430',
-        titleFont: { family: 'Bricolage Grotesque', weight: '600', size: 13 },
+        backgroundColor: '#0E2A33',
+        titleFont: { family: 'Source Sans 3', weight: '700', size: 13 },
         bodyFont: { family: 'Source Sans 3', size: 13 },
         padding: 12,
         cornerRadius: 6,
@@ -1347,13 +1493,13 @@ const chart = new Chart(ctx, {
     scales: {
       x: {
         grid: { display: false },
-        ticks: { color: '#164430', font: { family: 'Source Sans 3', size: 12 }, maxTicksLimit: 8 },
-        border: { color: 'rgba(22,68,48,0.15)' }
+        ticks: { color: '#0E2A33', font: { family: 'Source Sans 3', size: 12 }, maxTicksLimit: 8 },
+        border: { color: 'rgba(14,42,51,0.15)' }
       },
       y: {
-        grid: { color: 'rgba(22,68,48,0.06)' },
+        grid: { color: 'rgba(14,42,51,0.06)' },
         ticks: {
-          color: '#164430',
+          color: '#0E2A33',
           font: { family: 'Source Sans 3', size: 12 },
           callback: (v) => '$' + (v >= 1000 ? (v/1000).toFixed(0) + 'K' : v)
         },
@@ -1403,36 +1549,65 @@ const impactCategories = [
 // UPDATE
 // ============================================================
 function update() {
-  const gift     = +giftInput.value || 0;
+  const gift     = mode === 'onetime' ? (+giftInput.value || 0) : 0;
+  const monthly  = mode === 'monthly' ? (+monthlyInput.value || 0) : 0;
   const years    = +yearsInput.value;
   const retRate  = +returnInput.value / 100;
   const spdRate  = +spendInput.value / 100;
 
-  // Update labels
-  giftDisplay.textContent = gift.toLocaleString();
-  yearsDisplay.textContent = years;
-  returnDisplay.textContent = (+returnInput.value).toFixed(1);
-  spendDisplay.textContent = (+spendInput.value).toFixed(1);
-  horizonText.textContent = years;
+  // Total contributed over the horizon (used for one-time-equivalent comparison)
+  const totalContrib = gift + monthly * 12 * years;
 
-  // Update preset highlight
-  document.querySelectorAll('.preset').forEach(p => {
-    p.classList.toggle('active', +p.dataset.gift === gift);
-  });
+  // Update labels
+  giftDisplay.textContent    = (+giftInput.value || 0).toLocaleString();
+  monthlyDisplay.textContent = (+monthlyInput.value || 0).toLocaleString();
+  yearsDisplay.textContent   = years;
+  returnDisplay.textContent  = (+returnInput.value).toFixed(1);
+  spendDisplay.textContent   = (+spendInput.value).toFixed(1);
+  horizonText.textContent    = years;
+  helperYears.textContent    = years;
+  totalContributed.textContent = totalContrib.toLocaleString();
+
+  // Update preset highlight (in current mode)
+  if (mode === 'onetime') {
+    document.querySelectorAll('#onetimePresets .preset').forEach(p => {
+      p.classList.toggle('active', +p.dataset.gift === gift);
+    });
+  } else {
+    document.querySelectorAll('#monthlyPresets .preset').forEach(p => {
+      p.classList.toggle('active', +p.dataset.monthly === monthly);
+    });
+  }
 
   // Run model
-  const projection = project({ gift, years, returnRate: retRate, spendRate: spdRate });
+  const projection = project({ gift, monthly, years, returnRate: retRate, spendRate: spdRate });
   const atHorizon  = projection[years - 1];
 
-  // Update comparison
-  oneTimeImpact.textContent  = fmt(gift);
+  // Update comparison labels based on mode
+  if (mode === 'onetime') {
+    oneTimeSideLabel.textContent = 'One-time gift';
+    oneTimeCaption.textContent   = 'Total impact — spent in year one';
+    oneTimeYearsNum.textContent  = '1';
+    endowedSideLabel.textContent = 'Endowed gift';
+    multiplierCopy.innerHTML     = `An endowed gift creates <strong><span id="multiplierText">0</span>× the impact</strong> of giving it once — and keeps creating impact every year, forever.`;
+  } else {
+    oneTimeSideLabel.textContent = 'Granted as received';
+    oneTimeCaption.textContent   = 'Total impact — each gift spent in the year it arrives';
+    oneTimeYearsNum.textContent  = years;
+    endowedSideLabel.textContent = 'Endowed monthly gift';
+    multiplierCopy.innerHTML     = `Routing your monthly gifts to an endowed fund creates <strong><span id="multiplierText">0</span>× the impact</strong> — and keeps giving every year, forever.`;
+  }
+
+  // Update comparison values
+  oneTimeImpact.textContent  = fmt(totalContrib);
   endowedImpact.textContent  = fmt(atHorizon.cumGrants + atHorizon.end);
-  cumGrants.textContent      = fmt(atHorizon.cumGrants);
+  cumGrantsEl.textContent    = fmt(atHorizon.cumGrants);
   endingBalance.textContent  = fmt(atHorizon.end);
 
-  const mult = gift > 0 ? (atHorizon.cumGrants + atHorizon.end) / gift : 0;
-  multiplierText.textContent = fmtMult(mult);
-  multiplierBig.textContent  = fmtMult(mult);
+  const mult = totalContrib > 0 ? (atHorizon.cumGrants + atHorizon.end) / totalContrib : 0;
+  // Re-grab multiplierText because innerHTML rewrite recreates it
+  document.getElementById('multiplierText').textContent = fmtMult(mult);
+  multiplierBig.textContent = fmtMult(mult);
 
   // Update chart (show up to selected horizon)
   const chartData = projection.slice(0, years);
@@ -1442,18 +1617,19 @@ function update() {
   chart.data.datasets[2].data = chartData.map(d => d.grant);
   chart.update('none');
 
-  // Update impact cards
-  renderImpactCards(gift, atHorizon, years);
+  // Update impact cards — use total contributed as the "one-time equivalent" baseline
+  renderImpactCards(totalContrib, atHorizon, years);
 }
 
-function renderImpactCards(gift, horizonRow, years) {
+function renderImpactCards(baselineDollars, horizonRow, years) {
   const grid = document.getElementById('impactGrid');
   const perpetualAnnualGrant = horizonRow.grant;
+  const baselineLabel = mode === 'onetime' ? 'From a one-time gift' : 'If granted as received';
 
   grid.innerHTML = impactCategories.map(cat => {
-    const oneTime   = Math.floor(gift / cat.cost);
+    const baseline    = Math.floor(baselineDollars / cat.cost);
     const overHorizon = Math.floor(horizonRow.cumGrants / cat.cost);
-    const perYear   = Math.floor(perpetualAnnualGrant / cat.cost);
+    const perYear     = Math.floor(perpetualAnnualGrant / cat.cost);
 
     return `
       <div class="impact-card">
@@ -1461,8 +1637,8 @@ function renderImpactCards(gift, horizonRow, years) {
         <div class="cat">${cat.name}</div>
         <div class="cost">$${cat.cost.toLocaleString()} per unit</div>
         <div class="impact-stat">
-          <div class="n">${oneTime.toLocaleString()}</div>
-          <div class="l">From a one-time gift</div>
+          <div class="n">${baseline.toLocaleString()}</div>
+          <div class="l">${baselineLabel}</div>
         </div>
         <div class="impact-stat">
           <div class="n">${overHorizon.toLocaleString()}</div>
@@ -1480,13 +1656,37 @@ function renderImpactCards(gift, horizonRow, years) {
 // ============================================================
 // EVENT BINDING
 // ============================================================
-[giftInput, yearsInput, returnInput, spendInput].forEach(el => {
+[giftInput, monthlyInput, yearsInput, returnInput, spendInput].forEach(el => {
   el.addEventListener('input', update);
 });
 
-document.querySelectorAll('.preset').forEach(p => {
+// One-time presets
+document.querySelectorAll('#onetimePresets .preset').forEach(p => {
   p.addEventListener('click', () => {
     giftInput.value = p.dataset.gift;
+    update();
+  });
+});
+
+// Monthly presets
+document.querySelectorAll('#monthlyPresets .preset').forEach(p => {
+  p.addEventListener('click', () => {
+    monthlyInput.value = p.dataset.monthly;
+    update();
+  });
+});
+
+// Mode toggle (One-time / Monthly)
+document.querySelectorAll('.mode-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    mode = btn.dataset.mode;
+    document.querySelectorAll('.mode-toggle button').forEach(b => {
+      const isActive = b.dataset.mode === mode;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    inputsPanel.classList.toggle('mode-onetime', mode === 'onetime');
+    inputsPanel.classList.toggle('mode-monthly', mode === 'monthly');
     update();
   });
 });
